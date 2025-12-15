@@ -21,7 +21,6 @@ jobs:
 
     - name: Install dependencies
       run: |
-        pip install -r requirements.txt
         pip install coverage
 
     - name: Run tests and generate coverage
@@ -35,3 +34,4 @@ jobs:
         projectKey: LegacyHospitalSystem
         organization: unzilakhanzada-org
         token: ${{ secrets.SONAR_TOKEN }}
+
