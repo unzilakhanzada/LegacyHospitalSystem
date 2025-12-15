@@ -8,7 +8,7 @@ on:
     types: [opened, synchronize, reopened]
 
 jobs:
-  build:
+  sonarcloud:
     runs-on: ubuntu-latest
 
     steps:
@@ -29,9 +29,13 @@ jobs:
         coverage xml || echo "No coverage generated"
 
     - name: SonarCloud Scan
-      uses: SonarSource/sonarcloud-github-action@master
+      uses: SonarSource/sonarqube-scan-action@v5.0.0
       with:
-        projectKey: LegacyHospitalSystem
-        organization: unzilakhanzada-org
-        token: ${{ secrets.SONAR_TOKEN }}
+        args: >
+          -Dsonar.projectKey=LegacyHospitalSystem
+          -Dsonar.organization=unzilakhanzada-org
+          -Dsonar.sources=.
+      env:
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
 
